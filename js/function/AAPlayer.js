@@ -60,7 +60,7 @@ export class AAPlayer {
                 setTimeout(() => {
                     this.renderAAByCanvasImage();
                 }, 100);
-                console.warn(e);
+                console.warn("warn", e);
                 return;
             } else {
                 throw e;
@@ -93,10 +93,7 @@ export class AAPlayer {
      * @param {Object} [stream] 動画URIの文字列 | createObjectURLの戻り値
      */
     play(stream) {
-        console.log('2');
         if (stream) {
-            console.log('set2');
-
             this.videoSource.setStream(stream);
         }
 
