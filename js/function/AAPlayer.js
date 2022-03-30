@@ -16,6 +16,7 @@ export class AAPlayer {
         this.animationFrame = null;
         this.playing = false;
         this.context = document.getElementById("buffer").getContext("2d");
+        this.controlButton = document.querySelector('#control');
     }
 
     /**
@@ -26,6 +27,17 @@ export class AAPlayer {
         this.videoSource.source.addEventListener("canplaythrough", () => {
             const source = this.videoSource.getSource();
             this.aaCanvas.adjustScale(source.videoWidth, source.videoHeight);
+        });
+        this.controlButton.addEventListener('click', () => {
+            this.playing = !this.playing;
+
+            if (this.playing) {
+                this.controlButton.innerText = '一時停止';
+                this.videoSource.play();
+            } else {
+                this.controlButton.innerText = '再開';
+                this.videoSource.pause();
+            }
         });
 
         // ユーザーのビデオメディアを描画
@@ -67,13 +79,15 @@ export class AAPlayer {
             }
         }
 
-        this.aaCanvas.draw(
-            this.aaRenderer.render(
-                this.context.getImageData(0, 0, imageWidth, imageHeight),
-                this.aaCanvas.cfw,
-                this.aaCanvas.cfh
-            )
-        );
+        if (this.playing) {
+            this.aaCanvas.draw(
+                this.aaRenderer.render(
+                    this.context.getImageData(0, 0, imageWidth, imageHeight),
+                    this.aaCanvas.cfw,
+                    this.aaCanvas.cfh
+                )
+            );
+        }
 
         this.animationFrame = window.requestAnimationFrame(this.renderAAByCanvasImage);
     };

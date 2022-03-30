@@ -20,6 +20,13 @@ export class VideoSource {
     }
 
     /**
+     * ユーザーのビデオメディアを停止
+     */
+    pause() {
+        this.source.pause();
+    }
+
+    /**
      * ユーザーのビデオメディアをセット
      *
      * @param {srcObject} stream

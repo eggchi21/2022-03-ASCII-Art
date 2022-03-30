@@ -7,13 +7,17 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <video id="video" autoplay></video>
-        <canvas id="buffer" width="640" height="360"></canvas>
-        <div id="canvas">
-            <div></div>
+    <div id="displayArea">
+        <div id="wrapper">
+            <video id="video" autoplay></video>
+            <canvas id="buffer" width="640" height="360"></canvas>
+            <div id="canvas">
+                <div></div>
+            </div>
         </div>
     </div>
+    <button id="control">一時停止</button>
+
     <script src="js/app.js" type="module"></script>
 </body>
 
